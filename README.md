@@ -27,21 +27,31 @@
 
 <img width="761" alt="Screenshot 2024-12-18 at 9 04 56 PM" src="https://github.com/user-attachments/assets/9d19f39d-f636-4e23-8a29-f247b6f63113" />
 
-<p>-Restart and log back on (Should be automatic)</p>
+<p>- Restart and log back on (Should be automatic).</p> 
+<p>- Because we configured our virtual machine into a domain controller, we have to specify the domain when we log in. For example, Username: NicksDomain.com\Labuser2k</p>
+<p>- Now we will create a Domain admin within the domain.</p>
+<p>- start>Windows Administrative Tools>Active Directory Users and Computers.
 <p>
 </p>
 <img width="550" alt="Screenshot 2024-12-18 at 9 13 01 PM" src="https://github.com/user-attachments/assets/5d7379c0-692d-4ac1-8343-346168d2ba87" />
-
-
+<p>
+</p>
+<p>- -Create two OUs. One named _EMPLOYEES and one name _ADMINS.</p>
 
 <img width="776" alt="Screenshot 2024-12-18 at 9 13 43 PM" src="https://github.com/user-attachments/assets/c82f0fca-9e09-4dc5-843c-b1f553ba8931" />
 
+
 <img width="439" alt="Screenshot 2024-12-18 at 9 14 05 PM" src="https://github.com/user-attachments/assets/fc212bbf-9c18-4c11-a388-7b64069ede86" />
+<p>- Create a user named "Jane Doe" within the _ADMINS folder, user and password can be anything.</p>
+<p>
+</p>
 
 <img width="597" alt="Screenshot 2024-12-18 at 9 15 59 PM" src="https://github.com/user-attachments/assets/48e66ec6-ee7b-4dc4-b83b-22f4e1c8fb55" />
 
 <img width="439" alt="Screenshot 2024-12-18 at 9 16 33 PM" src="https://github.com/user-attachments/assets/d9020062-b8ff-4df2-8ef9-d32a7b3ca531" />
-
+<p>- Add Jane Doe to the "Domain Admins" security group to make her an Admin. Then log off and log back in as Jane.</p>
+<p>
+</p>
 
 <img width="438" alt="Screenshot 2024-12-18 at 9 16 51 PM" src="https://github.com/user-attachments/assets/398e9aa4-047d-4980-b33b-bea9d6118510" />
 
