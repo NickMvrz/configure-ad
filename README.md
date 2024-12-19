@@ -53,19 +53,19 @@
 <img width="438" alt="Screenshot 2024-12-18 at 9 16 51 PM" src="https://github.com/user-attachments/assets/398e9aa4-047d-4980-b33b-bea9d6118510" />
 
 <p>- Add Jane Doe to the "Domain Admins" security group to make her an Admin. Then log off and log back in as Jane.</p>
+<p>Right Click User > Properties> Add> Enter Domain Admins > Check Names, click ok.</p>
+
 <p>
 </p>
-
 
 <img width="392" alt="Screenshot 2024-12-18 at 9 17 25 PM" src="https://github.com/user-attachments/assets/c6bea7b2-c883-45e8-903a-e4e3a6567453" />
 
 <img width="414" alt="Screenshot 2024-12-18 at 9 17 35 PM" src="https://github.com/user-attachments/assets/067c2d2a-cf33-424c-9438-e2df6091f9ca" />
 
 <img width="460" alt="Screenshot 2024-12-18 at 9 17 46 PM" src="https://github.com/user-attachments/assets/481af655-92b3-4232-ac2f-e1ade76e8342" />
-
-
-<img width="440" alt="Screenshot 2024-12-18 at 9 19 55 PM" src="https://github.com/user-attachments/assets/382a9490-8f89-4aba-ae4c-3c5d2f43cbba" />
-
+<p>- From Client-1 log back in as our original account (labuser2k) and join it to the domain controller.</p>
+<p>
+</p>
 
 <img width="395" alt="Screenshot 2024-12-18 at 9 22 05 PM" src="https://github.com/user-attachments/assets/9d9e25df-8473-49c5-a7e2-489f529da862" />
 
