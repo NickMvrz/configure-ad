@@ -49,11 +49,13 @@
 <img width="597" alt="Screenshot 2024-12-18 at 9 15 59 PM" src="https://github.com/user-attachments/assets/48e66ec6-ee7b-4dc4-b83b-22f4e1c8fb55" />
 
 <img width="439" alt="Screenshot 2024-12-18 at 9 16 33 PM" src="https://github.com/user-attachments/assets/d9020062-b8ff-4df2-8ef9-d32a7b3ca531" />
+
+<img width="438" alt="Screenshot 2024-12-18 at 9 16 51 PM" src="https://github.com/user-attachments/assets/398e9aa4-047d-4980-b33b-bea9d6118510" />
+
 <p>- Add Jane Doe to the "Domain Admins" security group to make her an Admin. Then log off and log back in as Jane.</p>
 <p>
 </p>
 
-<img width="438" alt="Screenshot 2024-12-18 at 9 16 51 PM" src="https://github.com/user-attachments/assets/398e9aa4-047d-4980-b33b-bea9d6118510" />
 
 <img width="392" alt="Screenshot 2024-12-18 at 9 17 25 PM" src="https://github.com/user-attachments/assets/c6bea7b2-c883-45e8-903a-e4e3a6567453" />
 
