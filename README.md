@@ -4,7 +4,7 @@
 </p>
 
 <h1>Configuring Active Directory (On-Premises) Within Azure</h1>
-This tutorial outlines the implementation of on-premises Active Directory within Azure Virtual Machines.<br />
+This tutorial will show the implementation of on-premises Active Directory within Azure Virtual Machines.<br />
 
 <h2>Environments and Technologies Used</h2>
 
@@ -21,10 +21,10 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <h2>High-Level Deployment and Configuration Steps</h2>
 
 - Create Resources
-- Ensure Connectivity between the client and Domain Controller
+- Check for connectivity between the client and Domain Controller
 - Install Active Directory
 - Create an Admin and Normal User Account in AD
-- Join Client-1 to your domain (myadproject.com)
+- Join Client-1 to the domain (NicksDomain.com)
 - Setup Remote Desktop for non-administrative users on Client-1
 - Create additional users and attempt to log into client-1 with one of the users
 
@@ -44,27 +44,29 @@ This tutorial outlines the implementation of on-premises Active Directory within
   <img src="https://i.imgur.com/XyEmv8f.png" height="75%" width="100%" alt="vm windows"/>
 </p>
 <p>
-  Set Domain Controller’s NIC Private IP address to be static:
+  Set Domain Controller’s NIC Private IP address to be static (we do not want it to change)
 </p>
 <p>
   <img src="https://i.imgur.com/KHU9kC4.png" height="75%" width="100%" alt="static ip"/>
 </p>
 <p>
-  Ensure that both VMs are in the same Vnet (you can check the topology with Network Watcher):
+  Ensure that both VMs are in the same Virtual network
 </p>
 <p>
   <img src="https://i.imgur.com/rFpHLdQ.png" height="75%" width="100%" alt="topology"/>
 </p>
 <br />
 <br />
-<h3 align="center">Ensure Connectivity between the client and Domain Controller</h3>
+<h3 align="center">Check connection between client and Domain Controller</h3>
 <br />
 <p>- Log on to Client-1 and ping the Domain Controller to ensure they are connected.
 </p>
 
 <img width="860" alt="Screenshot 2024-12-18 at 8 57 00 PM" src="https://github.com/user-attachments/assets/3d34dff9-dec9-41c0-b488-e6d0f709df49" />
 <p> 
--Go into DC-1 and install Active Directory Domain Services. Domain name: NicksDomain (or whatever name you choose)
+- Go into DC-1 and install Active Directory Domain Services. Domain name: NicksDomain (or whatever name you choose)</p>
+<p>
+- Start > System Manager > Add Roles and Features > Active Directory Domain Services > Add Features > Install.
 </p>
 
 
@@ -80,15 +82,14 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 <img width="761" alt="Screenshot 2024-12-18 at 9 03 56 PM" src="https://github.com/user-attachments/assets/bca115aa-3e98-4135-b08e-6726497c3bc6" />
 
-
 <img width="761" alt="Screenshot 2024-12-18 at 9 04 12 PM" src="https://github.com/user-attachments/assets/4a6327e1-95d0-4039-b03e-a73599195fff" />
 
 <img width="761" alt="Screenshot 2024-12-18 at 9 04 56 PM" src="https://github.com/user-attachments/assets/9d19f39d-f636-4e23-8a29-f247b6f63113" />
 
-<p>- Restart and log back on (Should be automatic).</p> 
+<p>- Restart and log back on. Restart should be automatic.</p> 
 <br />
 <br />
-<h3 align="center">Create an Admin and Normal User Account in AD</h3>
+<h3 align="center">Create Domain Admin and Domain User Account in AD</h3>
 <br />
 <p>
 <p>- Because we configured our virtual machine into a domain controller, we have to specify the domain when we log in. For example, Username: NicksDomain.com\Labuser2k</p>
@@ -127,9 +128,10 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 <img width="460" alt="Screenshot 2024-12-18 at 9 17 46 PM" src="https://github.com/user-attachments/assets/481af655-92b3-4232-ac2f-e1ade76e8342" />
 <br />
-<h3 align="center">Join Client-1 to your domain (myadproject.com)</h3>
+<h3 align="center">Join Client-1 to your domain (NicksDomain.com)</h3>
 <br />
 <p>- From Client-1 log back in as our original account (labuser2k) and join it to the domain controller.</p>
+<p>- Rename this PC (Advanced) > Change > Member of Domain = NicksDomain.com > login with admin user and password.</p>
 <p>
 </p>
 
@@ -145,6 +147,7 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <img width="456" alt="Screenshot 2024-12-18 at 9 23 41 PM" src="https://github.com/user-attachments/assets/9e92db6f-8759-4c57-82aa-f5819cc2d7b1" />
 <p>  
 </p>
+  <p>- If logged in correctly, a notification will pop up saying you are now in the domain. The VM will now restart.</p>
   <p>- When you log back into DC-1, you will notice Client-1 now exists within the directory </p>
   <p>  
 </p>
@@ -156,7 +159,8 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <br />
 <p>  
 </p>
-  <p>- After Client-1 restarts, log back in with the jane_admin account. We are going to set up Remote Desktop. </p>
+  <p>- After Client-1 restarts, log back in with the jane_admin account. We are going to set up a Remote Desktop. </p>
+  <p>- System > Remote Desktop > Select users that can remotely access this PC > Add > enter Domain Users > Check Names > OK</p>
   <p>  
 </p>
 <img width="384" alt="Screenshot 2024-12-18 at 9 33 30 PM" src="https://github.com/user-attachments/assets/6e015132-e8e1-41c7-a870-4a40a05233cc" />
@@ -172,13 +176,19 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <br />
 <p>  
 </p>
-  <p>- Head back to DC-1 as Jane, and we will use a script to create 1000 users with random names to simulate what you might see in real life. Script:(https://github.com/Xinloiazn/configure-ad/blob/main/adscript.ps1) </p>
+  <p>- Head back to DC-1 as Jane, and we will use a script to create 1000 users with random names to simulate what you might see in real life. </p>
+  <p>- (https://github.com/Xinloiazn/configure-ad/blob/main/adscript.ps1)</p>
   <p>  
 </p>
 
 <img width="225" alt="Screenshot 2024-12-18 at 9 37 53 PM" src="https://github.com/user-attachments/assets/223b6198-6fc1-4b49-9583-54d6d36e1bc8" />
 
 <img width="1348" alt="Screenshot 2024-12-18 at 9 39 12 PM" src="https://github.com/user-attachments/assets/bb04de31-733f-4e7b-8f8c-3254f096444e" />
+<p>  
+</p>
+  <p>- Once copied, click the green button to run the script. </p>
+  <p>  
+</p>
 
 <img width="792" alt="Screenshot 2024-12-18 at 9 40 23 PM" src="https://github.com/user-attachments/assets/bdb69e26-6b77-4f45-a083-a86a5b26408d" />
 <p>  
@@ -195,6 +205,9 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <img width="391" alt="Screenshot 2024-12-18 at 9 44 15 PM" src="https://github.com/user-attachments/assets/6319d6ad-c2d6-4531-b2ec-6135c1b7d17a" />
 
 <img width="439" alt="Screenshot 2024-12-18 at 9 44 59 PM" src="https://github.com/user-attachments/assets/05a1cfdd-cd24-4d99-a1a8-dee8e717671d" />
+
+<h3 align="center">Testing Account Lockouts and Resetting User Passwords</h3>
+<br />
 <p>  
 </p>
   <p>- The next thing we can test is Account lockouts, but it needs to be configured first. </p>
@@ -237,14 +250,18 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <img width="326" alt="Screenshot 2024-12-18 at 10 05 34 PM" src="https://github.com/user-attachments/assets/2a5368dd-0fb4-4a2a-8578-d399bf2703dd" />
 
 <img width="415" alt="Screenshot 2024-12-18 at 10 05 41 PM" src="https://github.com/user-attachments/assets/8ab4fef5-ec66-4c9c-96a4-7b9a2401f60b" />
-
-<img width="326" alt="Screenshot 2024-12-18 at 10 05 34 PM" src="https://github.com/user-attachments/assets/88224f15-07f1-4f25-945c-eef0c5fc6c41" />
-
-<img width="415" alt="Screenshot 2024-12-18 at 10 05 41 PM" src="https://github.com/user-attachments/assets/b877b052-1916-4cf1-a0db-b82177c4cec4" />
+<p>  
+</p>
+  <p>- If you go to the "_EMPLOYEES folder and right click to "Find", there is an option to reset the password. </p>
+  <p>  
+</p>
 
 <img width="378" alt="Screenshot 2024-12-18 at 10 08 50 PM" src="https://github.com/user-attachments/assets/7066fd45-fb6d-485a-8bc2-429221f6ea48" />
 
 <img width="533" alt="Screenshot 2024-12-18 at 10 08 38 PM" src="https://github.com/user-attachments/assets/29a2af9b-36a8-4927-b9f4-7b704587009f" />
+
+<h1>End of Lab</h1>
+<p>- A good way to get practice with Active Directory is to just play around with it. View Group Policy Management, create fake scenarios to simulate what a real interaction in the work place would be like. I hope this tutorial was useful.</p>
 
 
 
